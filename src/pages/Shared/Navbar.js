@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     return (
-        <div className='px-16'>
+        <div className='lg:px-16'>
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -12,10 +12,25 @@ const Navbar = () => {
                         </label>
                         <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li>
-                                <Link to="/">Home</Link>
+                                <NavLink to="/">Home</NavLink>
                             </li>
                             <li>
-                                <Link to="about">About</Link>
+                                <NavLink to="about">About</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="appointment">Appointment</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="reviews">Reviews</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="contact">Contact</NavLink>
+                            </li>
+                            <li>
+                                <Link to="login">Login</Link>
+                            </li>
+                            <li>
+                                <Link to="register">Register</Link>
                             </li>
                         </ul>
                     </div>
@@ -38,11 +53,13 @@ const Navbar = () => {
                         <li>
                             <NavLink to="contact">Contact</NavLink>
                         </li>
+                        <li>
+                            <Link to="login">Login</Link>
+                        </li>
+                        <li>
+                            <Link to="register">Register</Link>
+                        </li>
                     </ul>
-                </div>
-                <div className="navbar-end">
-                    <Link to="login" className="btn mx-5">Login</Link>
-                    <Link to="register" className="btn">Register</Link>
                 </div>
             </div>
         </div>
