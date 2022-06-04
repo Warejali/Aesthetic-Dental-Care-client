@@ -1,7 +1,17 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Navbar = () => {
+    const [user] = useAuthState(auth);
+    const navigate = useNavigate()
+    const logout = () => {
+        signOut(auth);
+        navigate('/login')
+
+    };
     return (
         <div className='lg:px-16'>
             <div className="navbar bg-base-100">
@@ -27,10 +37,14 @@ const Navbar = () => {
                                 <NavLink to="contact">Contact</NavLink>
                             </li>
                             <li>
-                                <Link to="login">Login</Link>
+                                {
+                                    user ? <p>Sign Out</p> : <Link to="login">Login</Link>
+                                }
                             </li>
                             <li>
-                                <Link to="register">Register</Link>
+                                {
+                                    user ? "" : <Link to="register">Register</Link>
+                                }
                             </li>
                         </ul>
                     </div>
@@ -54,10 +68,14 @@ const Navbar = () => {
                             <NavLink to="contact">Contact</NavLink>
                         </li>
                         <li>
-                            <Link to="login">Login</Link>
+                            {
+                                user ? <button onClick={logout}>Sign Out</button> : <Link to="login">Login</Link>
+                            }
                         </li>
                         <li>
-                            <Link to="register">Register</Link>
+                            {
+                                user ? <Link to="register">{user.displayName}</Link> : <Link to="register">Register</Link>
+                            }
                         </li>
                     </ul>
                 </div>
